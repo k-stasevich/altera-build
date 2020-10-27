@@ -1,11 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
 
-// import pic02 from '../images/pic02.jpg';
-// import pic03 from '../images/pic03.jpg';
-import ServicesArticle from './ServicesArticle';
 import ContactUs from './ContactUs';
+import ServicesArticle from './ServicesArticle';
 
 class Main extends React.Component {
   render() {
@@ -13,7 +11,7 @@ class Main extends React.Component {
 
     return (
       <div
-        ref={this.props.setWrapperRef}
+        ref={this.props.wrapperRef}
         id="main"
         style={this.props.timeout ? { display: 'flex' } : { display: 'none' }}
       >
@@ -45,7 +43,7 @@ Main.propTypes = {
   onCloseArticle: PropTypes.func.isRequired,
   openArticle: PropTypes.func.isRequired,
   timeout: PropTypes.bool,
-  setWrapperRef: PropTypes.func.isRequired,
+  wrapperRef: PropTypes.object.isRequired,
 };
 
 export default Main;

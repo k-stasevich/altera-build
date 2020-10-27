@@ -1,114 +1,91 @@
-import React from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Layout from '../components/layout';
 
 import Header from '../components/Header';
 import Main from '../components/Main';
 import Footer from '../components/Footer';
 
-export class HomePage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isArticleVisible: false,
-      timeout: false,
-      articleTimeout: false,
-      article: '',
-      loading: 'is-loading',
-    };
-    this.handleOpenArticle = this.handleOpenArticle.bind(this);
-    this.handleCloseArticle = this.handleCloseArticle.bind(this);
-    this.setWrapperRef = this.setWrapperRef.bind(this);
-    this.handleClickOutside = this.handleClickOutside.bind(this);
-  }
+export const HomePage = (props) => {
+  const [isArticleVisible, setIsArticleVisible] = useState(false);
+  const [timeout, setTimeoutState] = useState(false);
+  const [articleTimeout, setArticleTimeout] = useState(false);
+  const [article, setArticle] = useState('');
+  const [loading, setLoading] = useState('is-loading');
 
-  componentDidMount() {
-    this.timeoutId = setTimeout(() => {
-      this.setState({ loading: '' });
-    }, 100);
-    document.addEventListener('mousedown', this.handleClickOutside);
-  }
+  const wrapperRef = useRef(null);
 
-  componentWillUnmount() {
-    if (this.timeoutId) {
-      clearTimeout(this.timeoutId);
-    }
-    document.removeEventListener('mousedown', this.handleClickOutside);
-  }
+  const handleOpenArticle = useCallback(
+    (article) => {
+      setIsArticleVisible(!isArticleVisible);
+      setArticle(article);
 
-  setWrapperRef(node) {
-    this.wrapperRef = node;
-  }
+      setTimeout(() => {
+        setTimeoutState(!timeout);
+      }, 325);
 
-  handleOpenArticle(article) {
-    this.setState({
-      isArticleVisible: !this.state.isArticleVisible,
-      article,
-    });
+      setTimeout(() => {
+        setArticleTimeout(!articleTimeout);
+      }, 350);
+    },
+    [isArticleVisible, articleTimeout, timeout],
+  );
+
+  const handleCloseArticle = useCallback(() => {
+    setArticleTimeout(!articleTimeout);
 
     setTimeout(() => {
-      this.setState({
-        timeout: !this.state.timeout,
-      });
+      setTimeoutState(!timeout);
     }, 325);
 
     setTimeout(() => {
-      this.setState({
-        articleTimeout: !this.state.articleTimeout,
-      });
+      setIsArticleVisible(!isArticleVisible);
+      setArticle('');
     }, 350);
-  }
+  }, [articleTimeout, timeout, isArticleVisible]);
 
-  handleCloseArticle() {
-    this.setState({
-      articleTimeout: !this.state.articleTimeout,
-    });
-
-    setTimeout(() => {
-      this.setState({
-        timeout: !this.state.timeout,
-      });
-    }, 325);
-
-    setTimeout(() => {
-      this.setState({
-        isArticleVisible: !this.state.isArticleVisible,
-        article: '',
-      });
-    }, 350);
-  }
-
-  handleClickOutside(event) {
-    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-      if (this.state.isArticleVisible) {
-        this.handleCloseArticle();
+  const handleClickOutside = useCallback(
+    (event) => {
+      if (wrapperRef && !wrapperRef.current.contains(event.target)) {
+        if (isArticleVisible) {
+          handleCloseArticle();
+        }
       }
-    }
-  }
+    },
+    [wrapperRef, isArticleVisible, handleCloseArticle],
+  );
 
-  render() {
-    return (
-      <Layout>
-        <div
-          className={`body ${this.state.loading} ${
-            this.state.isArticleVisible ? 'is-article-visible' : ''
-          }`}
-        >
-          <div id="wrapper">
-            <Header onOpenArticle={this.handleOpenArticle} timeout={this.state.timeout} />
-            <Main
-              openArticle={this.handleOpenArticle}
-              isArticleVisible={this.state.isArticleVisible}
-              timeout={this.state.timeout}
-              articleTimeout={this.state.articleTimeout}
-              article={this.state.article}
-              onCloseArticle={this.handleCloseArticle}
-              setWrapperRef={this.setWrapperRef}
-            />
-            <Footer timeout={this.state.timeout} />
-          </div>
-          <div id="bg" />
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setLoading('');
+    }, 100);
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [handleClickOutside]);
+
+  return (
+    <Layout>
+      <div className={`body ${loading} ${isArticleVisible ? 'is-article-visible' : ''}`}>
+        <div id="wrapper">
+          <Header onOpenArticle={handleOpenArticle} timeout={timeout} />
+          <Main
+            openArticle={handleOpenArticle}
+            isArticleVisible={isArticleVisible}
+            timeout={timeout}
+            articleTimeout={articleTimeout}
+            article={article}
+            onCloseArticle={handleCloseArticle}
+            wrapperRef={wrapperRef}
+          />
+          <Footer timeout={timeout} />
         </div>
-      </Layout>
-    );
-  }
-}
+        <div id="bg" />
+      </div>
+    </Layout>
+  );
+};
