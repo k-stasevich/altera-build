@@ -5,36 +5,30 @@ import PropTypes from 'prop-types';
 import ContactUs from './ContactUs';
 import ServicesArticle from './ServicesArticle';
 
-class Main extends React.Component {
-  render() {
-    const { onCloseArticle, article, articleTimeout, openArticle } = this.props;
+export const Main = (props) => {
+  const { timeout, onCloseArticle, article, articleTimeout, openArticle, wrapperRef } = props;
 
-    return (
-      <div
-        ref={this.props.wrapperRef}
-        id="main"
-        style={this.props.timeout ? { display: 'flex' } : { display: 'none' }}
-      >
-        <ServicesArticle
-          articleClasses={classnames({
-            active: article === 'services',
-            timeout: articleTimeout,
-          })}
-          onClose={onCloseArticle}
-          openArticle={openArticle}
-        />
+  return (
+    <div ref={wrapperRef} id="main" style={timeout ? { display: 'flex' } : { display: 'none' }}>
+      <ServicesArticle
+        articleClasses={classnames({
+          active: article === 'services',
+          timeout: articleTimeout,
+        })}
+        onClose={onCloseArticle}
+        openArticle={openArticle}
+      />
 
-        <ContactUs
-          articleClasses={classnames({
-            active: article === 'contact',
-            timeout: articleTimeout,
-          })}
-          onClose={onCloseArticle}
-        />
-      </div>
-    );
-  }
-}
+      <ContactUs
+        articleClasses={classnames({
+          active: article === 'contact',
+          timeout: articleTimeout,
+        })}
+        onClose={onCloseArticle}
+      />
+    </div>
+  );
+};
 
 Main.propTypes = {
   route: PropTypes.object,
@@ -45,5 +39,3 @@ Main.propTypes = {
   timeout: PropTypes.bool,
   wrapperRef: PropTypes.object.isRequired,
 };
-
-export default Main;

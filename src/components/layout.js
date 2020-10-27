@@ -21,14 +21,9 @@ const Layout = (props) => {
 
   return (
     <>
-      <Helmet
-        title={'АлтераСтрой'}
-        meta={[
-          { name: 'description', content: 'Sample' },
-          { name: 'keywords', content: 'sample, something' },
-        ]}
-      >
+      <Helmet>
         <html lang="ru" />
+        <title>{'АлтераСтрой'}</title>
       </Helmet>
       {content}
     </>
