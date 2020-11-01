@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '../components/common/Button';
-import Layout from '../components/layout';
+import { Button } from '../common/Button';
+import Layout from '../layout';
 
 export const NotFoundPage = () => (
   <Layout>
