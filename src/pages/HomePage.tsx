@@ -5,14 +5,16 @@ import Header from '../components/Header';
 import { Main } from '../components/Main';
 import Footer from '../components/Footer';
 
-export const HomePage = (props) => {
+interface IHomePageProps {}
+
+export const HomePage: React.FC<IHomePageProps> = (props: IHomePageProps)  => {
   const [isArticleVisible, setIsArticleVisible] = useState(false);
   const [timeout, setTimeoutState] = useState(false);
   const [articleTimeout, setArticleTimeout] = useState(false);
   const [article, setArticle] = useState('');
   const [loading, setLoading] = useState('is-loading');
 
-  const wrapperRef = useRef(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   const handleOpenArticle = useCallback(
     (article) => {
@@ -45,7 +47,7 @@ export const HomePage = (props) => {
 
   const handleClickOutside = useCallback(
     (event) => {
-      if (wrapperRef && !wrapperRef.current.contains(event.target)) {
+      if (!wrapperRef.current?.contains(event.target)) {
         if (isArticleVisible) {
           handleCloseArticle();
         }
@@ -75,7 +77,6 @@ export const HomePage = (props) => {
           <Header onOpenArticle={handleOpenArticle} timeout={timeout} />
           <Main
             openArticle={handleOpenArticle}
-            isArticleVisible={isArticleVisible}
             timeout={timeout}
             articleTimeout={articleTimeout}
             article={article}
