@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CloseIcon from '../common/CloseIcon';
 import { sendContactUsEmail } from '../../helpers/contactFormHelper';
+import { Button } from '../common/Button';
+import { BTN_TYPES } from '../../constants/constants';
 
 class ContactUs extends React.Component {
   constructor(props) {
@@ -21,14 +23,14 @@ class ContactUs extends React.Component {
     this.setState({ disableButton: true, responseMessage: '' });
 
     sendContactUsEmail()
-      .then(response => {
+      .then((response) => {
         this.setState({
           disableButton: false,
           responseMessage: 'Сообщение успешно отправлено.',
         });
         this.resetForm();
       })
-      .catch(err => {
+      .catch((err) => {
         this.setState({
           disableButton: false,
           responseMessage: 'Произошла ошибка отправки, попробуйте позже.',
@@ -42,11 +44,7 @@ class ContactUs extends React.Component {
     const { disableButton, responseMessage } = this.state;
 
     return (
-      <article
-        id="contact"
-        className={articleClasses}
-        style={{ display: 'none' }}
-      >
+      <article id="contact" className={articleClasses} style={{ display: 'none' }}>
         <h2 className="major">Контакты</h2>
         <form id="contact-form">
           <div className="field half first">
@@ -63,14 +61,14 @@ class ContactUs extends React.Component {
           </div>
           <ul className="actions">
             <li>
-              <button
+              <Button
                 type="button"
                 onClick={this.onSubmit}
-                className="special"
+                theme={BTN_TYPES.SPECIAL}
                 disabled={disableButton}
               >
                 Отправить
-              </button>
+              </Button>
             </li>
             <li>
               <input type="reset" value="Сбросить" />
