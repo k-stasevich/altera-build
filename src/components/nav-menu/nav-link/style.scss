@@ -1,6 +1,8 @@
+@import '../../../assets/scss/libs/index.scss';
+
 nav {
   ul {
-    @include vendor('display', 'flex');
+    display: flex;
     margin-bottom: 0;
     list-style: none;
     padding-left: 0;

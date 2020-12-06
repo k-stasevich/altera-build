@@ -1,0 +1,15 @@
+.home-page {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.home-page__main-section {
+  flex-grow: 1;
+}
+
+.home-page__footer {
+  padding-top: 30px;
+  height: 45px;
+}

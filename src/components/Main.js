@@ -2,8 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
-import ContactUs from './ContactUs';
-import ServicesArticle from './ServicesArticle';
+import ServicesArticle from './pages/services';
 
 export const Main = (props) => {
   const { timeout, onCloseArticle, article, articleTimeout, openArticle, wrapperRef } = props;
@@ -17,14 +16,6 @@ export const Main = (props) => {
         })}
         onClose={onCloseArticle}
         openArticle={openArticle}
-      />
-
-      <ContactUs
-        articleClasses={classnames({
-          active: article === 'contact',
-          timeout: articleTimeout,
-        })}
-        onClose={onCloseArticle}
       />
     </div>
   );

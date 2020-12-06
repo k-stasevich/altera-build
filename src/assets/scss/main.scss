@@ -3,6 +3,7 @@
 @import 'libs/mixins';
 @import 'libs/skel';
 @import '../css/font-awesome.min.css';
+@import './components/card.scss';
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300italic,600italic,300,600');
 
 /*
@@ -43,8 +44,6 @@
 @import 'components/list';
 @import 'components/table';
 @import 'components/button';
-@import '../../components/NavMenu/NavLinkComponent.scss';
-@import '../../components/ServicesArticle/ServicesArticle.scss';
 
 // Layout.
 
@@ -52,4 +51,3 @@
 @import 'layout/wrapper';
 @import 'layout/header';
 @import 'layout/main';
-@import 'layout/footer';
