@@ -9,8 +9,8 @@ interface ICloseIconProps extends Omit<IIconProps, 'name'> {
 
 export const CloseIconComponent: React.FC<ICloseIconProps> = ({
   onClick,
-  width = 25,
-  height = 25,
+  width = 30,
+  height = 30,
   fill = 'white',
 }) => (
   <Icon

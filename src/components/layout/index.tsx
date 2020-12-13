@@ -11,22 +11,38 @@ interface ILayoutProps {
   children: ReactNode;
 }
 
+const pageVariants = {
+  in: {
+    opacity: 1,
+  },
+  out: {
+    opacity: 0,
+  },
+};
+const pageTransition = {
+  duration: 0.3,
+};
+
 const Layout: React.FC<ILayoutProps> = (props) => {
   const { children, middle = false } = props;
 
-  const content = (
-    <div id="wrapper" className={classnames('page', { middle })}>
-      {children}
-    </div>
-  );
-
   return (
-    <motion.div style={{ height: '100%' }}>
+    <motion.div
+      style={{ height: '100%' }}
+      exit="out"
+      animate="in"
+      initial="out"
+      variants={pageVariants}
+      transition={pageTransition}
+    >
       <Helmet>
         <html lang="ru" />
         <title>АлтераСтрой</title>
       </Helmet>
-      {content}
+
+      <div id="wrapper" className={classnames('page', { middle })}>
+        {children}
+      </div>
 
       <div id="bg" />
     </motion.div>

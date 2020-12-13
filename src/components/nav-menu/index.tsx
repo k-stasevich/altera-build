@@ -8,8 +8,6 @@ interface INavItem {
   onClick?: () => any;
 }
 
-const stub = () => {};
-
 interface INavMenuProps {
   items: INavItem[];
 }
@@ -23,7 +21,7 @@ export const NavMenu: React.FC<INavMenuProps> = (props) => {
         {items.map((i) => {
           return (
             <li key={i.title} className={classnames(i.className, { link: i.onClick })}>
-              <NavLink onClick={i.onClick ? i.onClick : stub}>{i.title}</NavLink>
+              <NavLink onClick={i.onClick}>{i.title}</NavLink>
             </li>
           );
         })}
