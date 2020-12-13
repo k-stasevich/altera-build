@@ -5,16 +5,24 @@ import { sendContactUsEmail } from '../../../helpers/contactFormHelper';
 import { Button } from '../../common/Button';
 import { BTN_TYPES } from '../../../constants/constants';
 import Layout from '../../layout';
+// import { BEM } from '../../../helpers/bem';
+
+import './style.scss';
+import { useHistory } from 'react-router-dom';
+
+// const classes = BEM('contact-page');
 
 interface IContactUsPageProps {}
 
 export const ContactUsPage: React.FC<IContactUsPageProps> = (props) => {
+  const history = useHistory();
+
   const [disableButton, setDisableButton] = useState(false);
   const [responseMessage, setResponseMessage] = useState('');
 
   const onClose = useCallback(() => {
-    // TODO
-  }, []);
+    history.push('/');
+  }, [history]);
 
   const resetForm = useCallback(() => {
     const formEl = document.getElementById('contact-form') as HTMLFormElement | null;
@@ -84,10 +92,7 @@ export const ContactUsPage: React.FC<IContactUsPageProps> = (props) => {
             </li>
             <li>
               <a href="#" className="icon fa-facebook">
-                <span className="label">Facebook</span>
-              </a>
-            </li>
-            <li>
+                <span className="labclasses
               <a href="#" className="icon fa-instagram">
                 <span className="label">Instagram</span>
               </a>
@@ -106,7 +111,9 @@ export const ContactUsPage: React.FC<IContactUsPageProps> = (props) => {
             <li>телефон: 8-029-312-52-46</li>
           </ul>
 
-          <CloseIcon onClick={onClose} />
+          <CloseIcon.Wrapper>
+            <CloseIcon.Icon onClick={onClose} />
+          </CloseIcon.Wrapper>
         </article>
       </div>
     </Layout>

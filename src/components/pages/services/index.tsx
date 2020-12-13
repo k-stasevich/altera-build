@@ -17,48 +17,52 @@ export const ServicesPage: React.FC = (props) => {
 
   return (
     <Layout>
-      <article id="services">
-        <h2 className="major">Услуги</h2>
-        <span className="image main">
-          <img src={pic01} alt="" />
-        </span>
+      <div className="card">
+        <article id="services">
+          <h2 className="major">Услуги</h2>
+          <span className="image main">
+            <img src={pic01} alt="" />
+          </span>
 
-        <NavMenu
-          items={[
-            {
-              title: 'Сантехнические работы',
-            },
-            {
-              title: 'Канализация',
-              className: 'secondary',
-            },
-            {
-              title: 'Отопление',
-              className: 'secondary',
-            },
-            {
-              title: 'Водопровод',
-              className: 'secondary',
-            },
-            {
-              title: 'Подключение стиральных и посудомоечных машин',
-              className: 'secondary',
-            },
-            {
-              title: 'Ремонт и установка гидрофоров (насосных станций для воды)',
-              className: 'secondary',
-            },
-            {
-              title: 'Кондиционеры',
-            },
-            {
-              title: 'Алмазное сверление отверстий',
-            },
-          ]}
-        />
+          <NavMenu
+            items={[
+              {
+                title: 'Сантехнические работы',
+              },
+              {
+                title: 'Канализация',
+                className: 'secondary',
+              },
+              {
+                title: 'Отопление',
+                className: 'secondary',
+              },
+              {
+                title: 'Водопровод',
+                className: 'secondary',
+              },
+              {
+                title: 'Подключение стиральных и посудомоечных машин',
+                className: 'secondary',
+              },
+              {
+                title: 'Ремонт и установка гидрофоров (насосных станций для воды)',
+                className: 'secondary',
+              },
+              {
+                title: 'Кондиционеры',
+              },
+              {
+                title: 'Алмазное сверление отверстий',
+              },
+            ]}
+          />
 
-        <CloseIcon onClick={onClose} />
-      </article>
+          <CloseIcon.Wrapper>
+            <CloseIcon.Icon onClick={onClose} />
+          </CloseIcon.Wrapper>
+        </article>
+      </div>
     </Layout>
   );
 };
