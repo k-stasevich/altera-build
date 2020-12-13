@@ -5,7 +5,7 @@ import './style.scss';
 
 const Footer: React.FC = (props) => (
   <footer id="footer">
-    <span>© 2018 АлтераСтрой</span>
+    <div>© 2018 АлтераСтрой</div>
   </footer>
 );
 
