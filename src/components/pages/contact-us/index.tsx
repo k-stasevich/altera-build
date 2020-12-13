@@ -52,6 +52,10 @@ export const ContactUsPage: React.FC<IContactUsPageProps> = (props) => {
     <Layout middle>
       <div className="card">
         <article id="contact">
+          <CloseIcon.Wrapper>
+            <CloseIcon.Icon onClick={onClose} />
+          </CloseIcon.Wrapper>
+
           <h2 className="major">Контакты</h2>
           <form id="contact-form">
             <div className="field half first">
@@ -84,25 +88,6 @@ export const ContactUsPage: React.FC<IContactUsPageProps> = (props) => {
 
             <p style={{ fontSize: 20, margin: '10px 0' }}>{responseMessage}</p>
           </form>
-          <ul className="icons">
-            {/* <li>
-              <a href="#" className="icon fa-twitter">
-                <span className="label">Twitter</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" className="icon fa-facebook">
-                <span className="labclasses
-              <a href="#" className="icon fa-instagram">
-                <span className="label">Instagram</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" className="icon fa-github">
-                <span className="label">GitHub</span>
-              </a>
-            </li> */}
-          </ul>
 
           <ul>
             <li>mail: alteractroy@mail.ru</li>
@@ -111,9 +96,13 @@ export const ContactUsPage: React.FC<IContactUsPageProps> = (props) => {
             <li>телефон: 8-029-312-52-46</li>
           </ul>
 
-          <CloseIcon.Wrapper>
-            <CloseIcon.Icon onClick={onClose} />
-          </CloseIcon.Wrapper>
+          <a
+            href="https://www.instagram.com/kondisioner_otoplenie_pinsk/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <i className="fab fa-instagram" style={{ fontSize: 30 }}></i>
+          </a>
         </article>
       </div>
     </Layout>

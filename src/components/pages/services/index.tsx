@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import pic01 from '../../../images/pic01.jpg';
 import { CloseIcon } from '../../common/close-icon';
 import { NavMenu } from '../../nav-menu';
 
@@ -20,9 +19,6 @@ export const ServicesPage: React.FC = (props) => {
       <div className="card">
         <article id="services">
           <h2 className="major">Услуги</h2>
-          <span className="image main">
-            <img src={pic01} alt="" />
-          </span>
 
           <NavMenu
             items={[

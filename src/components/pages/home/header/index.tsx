@@ -4,6 +4,8 @@ import { useHistory } from 'react-router-dom';
 
 import { NavMenu } from '../../../nav-menu';
 
+import './style.scss';
+
 interface IHeaderProps {}
 
 const Header: React.FC<IHeaderProps> = (props) => {

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Router } from './Router';
 import reportWebVitals from './reportWebVitals';
 
-import './assets/css/font-awesome.min.css';
+import '@fortawesome/fontawesome-free/css/all.css';
 import './assets/scss/main.scss';
 
 ReactDOM.render(
