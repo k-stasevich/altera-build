@@ -4,7 +4,7 @@ import Helmet from 'react-helmet';
 import classnames from 'classnames';
 import { motion } from 'framer-motion';
 
-import './style.scss';
+import styles from './layout.module.scss';
 
 interface ILayoutProps {
   middle?: boolean;
@@ -40,9 +40,7 @@ const Layout: React.FC<ILayoutProps> = (props) => {
         <title>АлтераСтрой</title>
       </Helmet>
 
-      <div id="wrapper" className={classnames('page', { middle })}>
-        {children}
-      </div>
+      <div className={classnames(styles.wrapper, { middle })}>{children}</div>
 
       <div id="bg" />
     </motion.div>

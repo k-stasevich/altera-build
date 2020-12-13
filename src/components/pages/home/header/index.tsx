@@ -8,11 +8,10 @@ interface IHeaderProps {}
 
 const Header: React.FC<IHeaderProps> = (props) => {
   const history = useHistory();
+
   return (
     <header id="header">
-      <div className="logo">
-        <span className="icon fa-diamond" />
-      </div>
+      {/* <div className="logo"></div> */}
       <div className="content">
         <div className="inner">
           <h1>АлтераСтрой</h1>
